@@ -90,28 +90,77 @@ class BinarySearchTree {
     // Breadth First Traversal - Iterative
   breadthFirstTraversal() {
     // your code here
+    let queue = [];
+
+    queue.push(this.root);
+
+    while (queue.length > 0) {
+
+      let node = queue.shift();
+      console.log(node.val);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
   }
 
   // Depth First Traversal - Iterative
   depthFirstTraversal() {
     // your code here
+    let stack = [];
+
+    stack.push(this.root);
+
+    while (stack.length > 0) {
+      
+      let node = stack.pop();
+
+      console.log(node.val);
+
+      if (node.left) stack.push(node.left);
+      if (node.right) stack.push(node.right);
+      
+      
+    }
+
+  }
+
+  static sort(arr) {
+    let flag = false;
+
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = 0; j < arr.length - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+          [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+          flag = true
+        }
+      }
+
+      if (!flag) break;
+    }
+
+    return arr;
+  }
 }
-}
+
 
 let bst = new BinarySearchTree();
 
 bst.insert(4);
 bst.insert(2);
-bst.insert(1);
 bst.insert(6);
+bst.insert(3);
+bst.insert(1);
 bst.insert(5);
 bst.insert(7);
-//bst.insert(12);
+// //bst.insert(12);
 
-console.log(bst);
-console.log("===============");
 
-bst.inOrderTraversal();
+
+bst.breadthFirstTraversal();
+// console.log("===============");
+
+//bst.inOrderTraversal();
 
 
 
